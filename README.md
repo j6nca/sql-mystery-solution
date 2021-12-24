@@ -41,6 +41,8 @@ With our witness information above we can use `person.id` to find interview tran
 | 16371     | I saw the murder happen, and I recognized the killer from my gym when I was working out last week on January the 9th.                                                                                                           |
 
 ### Investigating "Get Fit Now Gym"
+We start by checking gym records that fit the descriptions given by the witnesses.
+
 ```
 SELECT * FROM get_fit_now_member 
 JOIN get_fit_now_check_in ON get_fit_now_member.id = get_fit_now_check_in.membership_id
@@ -50,6 +52,8 @@ WHERE id LIKE "48Z%" AND membership_status = "gold" AND check_in_date = "2018010
 |-------|-----------|---------------|-----------------------|-------------------|---------------|---------------|---------------|----------------|
 | 48Z7A | 28819     | Joe Germuska  | 20160305              | gold              | 48Z7A         | 20180109      | 1600          | 1730           |
 | 48Z55 | 67318     | Jeremy Bowers | 20160101              | gold              | 48Z55         | 20180109      | 1530          | 1700           |
+
+We get two names of interest both matching the gym criteria provided. We then cross reference this information with their `plate_number`s found in the `drivers_license` table.
 
 ```
 SELECT * FROM drivers_license 
